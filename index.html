@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Library App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>library</h1>
+    </header>
+    <div id="add-book-modal">
+        <form>
+            <h2 class="form-title">Add new book</h2>
+            <input type="text" id="title" name="title" placeholder="Title">
+            <input type="text" id="author" name="author" placeholder="Author">
+            <input type="number" id="pages" name="pages" placeholder="Pages">
+            <div class="read-input">
+                <label for="is-read" id="read">Have you read it?</label>
+                <input type="checkbox" id="is-read" class="checkbox">
+            </div>
+            <input type="button" id="add-book" name="add-book" value="Add new book">
+        </form>
+    </div>
+    <main id="card-container">
+        <section class="button-container">
+            <button id="new-book-btn" type="button" onclick="displayNewBookModal()">+ Add book</button>
+        </section>
+    </main>
+    <footer>
+        <h2>Copyright &#169; 2022 Justin Smolinski</h2>
+    </footer>
+</body>
+<script type="text/javascript" src="script.js"></script>
+</html>
