@@ -7,10 +7,14 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    // this.bookInfo = function () {
-    //     return this.title + " by " + this.author + ", " + this.pages +
-    //         ", " + this.read;
-    // }
+}
+
+//Set method on the Book prototype
+Book.prototype = {
+    bookInfo: function() {
+        return this.title + " by " + this.author + ", " + this.pages +
+            ", " + this.read;
+    }
 }
 
 //Calls Book constructor and adds new book objects to myLibrary array
@@ -28,6 +32,8 @@ function displayBooks() {
 //Dynamically create DOM element cards representing book object attributes
 let cardContainer = document.querySelector('#card-container');
 
+//Creates a card with the DOM taking i as a parameter for the array index of
+//  myLibrary that the object is stored at
 function createCard(i) {
     //Create a card and append to Card Container
     let card = document.createElement("div");
@@ -55,9 +61,32 @@ function createCard(i) {
     //Create read button node and append to card
     let bookRead = document.createElement("button");
     bookRead.setAttribute('type', 'button');
-    bookRead.setAttribute('class', 'read-button');
-    bookRead.innerHTML = "Read";
-    card.appendChild(bookRead)
+    bookRead.innerHTML = readButtonStyle();
+    card.appendChild(bookRead);
+    bookRead.addEventListener("click", function(){
+        if (myLibrary[i].read) {
+            myLibrary[i].read = false;
+            bookRead.innerHTML = "Not Read";
+            readButtonStyle();
+            return;
+        } else {
+            myLibrary[i].read = true;
+            bookRead.innerHTML = "Read";
+            readButtonStyle();
+            return;
+        }
+    });
+
+    //Called in read button node, sets background color of read button and returns button text
+    function readButtonStyle() {
+        if (myLibrary[i].read === true) {
+            bookRead.setAttribute('class', 'read-button');
+            return "Read";
+        } else {
+            bookRead.setAttribute('class', 'not-read-button');
+            return "Not Read";
+        }
+    }
 
     //Create remove button node and append to card
     let bookRemove = document.createElement("button");
@@ -66,17 +95,6 @@ function createCard(i) {
     bookRemove.innerHTML = "Remove Book";
     card.appendChild(bookRemove);
 }
-
-// function readButtonStyle(){
-//     if (this.read === "read"){
-//         bookRead.setAttribute('background-color', '#9fff9c');
-//         bookRead.innerHTML = "Read";
-//     } else {
-//         bookRead.setAttribute('background-color', '#ff9c9c');
-//         bookRead.innerHTML = "Not read";
-//     }
-// }
-
 
 // Modal Logic
 let modalWindow = document.querySelector('#add-book-modal'); //DOM object for modal
@@ -101,8 +119,8 @@ function addBook(){
     let title = document.querySelector('#title').value;
     let author = document.querySelector('#author').value;
     let pages = document.querySelector('#pages').value;
-    // let read = document.querySelector('#is-read').value;
-    myLibrary.push(new Book(title, author, pages));
+    let read = document.querySelector('#is-read').checked;
+    myLibrary.push(new Book(title, author, pages, read));
     createCard(myLibrary.length - 1);
     modalWindow.style.display = "none";
 }

@@ -72,7 +72,7 @@ main {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
-.read-button {
+.read-button, .not-read-button, .remove-button {
     width: 100%;
     background-color: #9fff9c;
     font-family: 'Poppins', sans-serif;
@@ -84,16 +84,11 @@ main {
     padding: 0.5em;
     margin: 0.5em;
 }
+.not-read-button {
+    background-color: #ff9c9c;
+}
 .remove-button {
-    width: 100%;
     background-color: #e9e9ed;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.5em;
-    padding: 0.5em;
 }
 
 /* New Book button styling */
