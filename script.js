@@ -38,6 +38,7 @@ function createCard(i) {
     //Create a card and append to Card Container
     let card = document.createElement("div");
     card.setAttribute('class', 'card');
+    card.setAttribute('data-arrindex', i);
     cardContainer.appendChild(card);
 
     //Create title node and append to Card
@@ -94,6 +95,10 @@ function createCard(i) {
     bookRemove.setAttribute('class', 'remove-button');
     bookRemove.innerHTML = "Remove Book";
     card.appendChild(bookRemove);
+    bookRemove.addEventListener("click", function(){
+        myLibrary.splice(i, 1);
+        card.remove();
+    })
 }
 
 // Modal Logic
